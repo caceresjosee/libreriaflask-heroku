@@ -1,6 +1,7 @@
 from flask import Flask, request
 from flask_restful import Api
 from config.base_datos import bd
+import os # SIRVE PARA LAS VARIABLES DE ENTORNO DE L MAQUINA
 # from models.autor import AutorModel
 from controllers.autor import AutoresController, AutorController
 # from models.categoria import CategoriaModel
@@ -32,7 +33,8 @@ app.register_blueprint(swagger_blueprint)
 # https://flask-sqlalchemy.palletsprojects.com/en/2.x/config/#connection-uri-format
 #                                    formato://username:password@host:port/databasename
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost:3306/flasklibreria'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://numjmbfsfzvdbzfp:f4xhk9fzmaayj85s@d6rii63wp64rsfb5.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/t7pdjw13yz44k2hq'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://numjmbfsfzvdbzfp:f4xhk9fzmaayj85s@d6rii63wp64rsfb5.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/t7pdjw13yz44k2hq'
+app.config['SQLALCHEMY_DATABASE_URI'] =  os.environ['JAWSDB_URL']
 
 api = Api(app)
 CORS(app) # PERMITIENDO TODOS LOS METODOS , DOMINIOS Y HEADERS
